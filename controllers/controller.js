@@ -8,13 +8,9 @@ exports.homeController = (req, res)=>{
 }
 
 exports.verifyLtiLaunch = (req,res)=>{
-    // delete req.body.tool_provider_url;
-    // delete req.body.tool_secret;
-    let action = "http://localhost:3000/lti";
+    let action = config.TPUrl;
     let secret = config.tool_secret;
-    // delete req.body.tool_provider_url;
-    // delete req.body.tool_secret;
-    var oauth_signature_received = req.body.oauth_signature;
+    let oauth_signature_received = req.body.oauth_signature;
     delete req.body.oauth_signature;
     oauth_signature = oauth.hmacsign('POST', action, req.body, secret);
     if (oauth_signature == oauth_signature_received) {
