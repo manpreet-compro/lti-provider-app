@@ -8,8 +8,8 @@ exports.homeController = (req, res)=>{
 }
 
 exports.verifyLtiLaunch = (req,res)=>{
-    delete req.body.tool_provider_url;
-    delete req.body.tool_secret;
+    // delete req.body.tool_provider_url;
+    // delete req.body.tool_secret;
     let action = req.body.tool_provider_url;
     let secret = config.tool_secret;
     
