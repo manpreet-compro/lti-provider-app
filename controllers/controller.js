@@ -14,7 +14,7 @@ exports.verifyLtiLaunch = (req,res)=>{
         });
     }
 
-    if (config.consumer_keys[req.body.oauth_consumer_key]) {
+    if (!(config.consumer_keys[req.body.oauth_consumer_key])) {
         res.render('error.hbs', {
             keyNotFound: true
         });
