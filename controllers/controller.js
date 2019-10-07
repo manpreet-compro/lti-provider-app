@@ -19,7 +19,8 @@ exports.verifyLtiLaunch = (req,res)=>{
     }
     else {
         res.render('error.hbs', {
-            signature: oauth_signature
+            signature: oauth_signature,
+            receivedSignature: req.body.oauth_signature
         });
     }
 }
