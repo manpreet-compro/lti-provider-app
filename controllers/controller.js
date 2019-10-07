@@ -8,7 +8,6 @@ exports.homeController = (req, res)=>{
 }
 
 exports.verifyLtiLaunch = (req,res)=>{
-    debugger;
     // delete req.body.tool_provider_url;
     // delete req.body.tool_secret;
     let action = "http://localhost:3000/lti";
