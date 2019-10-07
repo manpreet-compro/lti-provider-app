@@ -1,3 +1,7 @@
-<h1>Invalid Signature</h1>
-<p>Generated Signature: {{signature}}</p>
-<p>Received Signature: {{receivedSignature}}</p>
+{{#if badRequest}}
+    <p>Request Parameters not valid</p>
+{{/if}}
+{{#if validated}}
+    <p>Invalid Signature</p>
+{{/if}}
+
