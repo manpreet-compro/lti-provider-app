@@ -27,7 +27,7 @@ exports.verifyLtiLaunch = (req,res)=>{
         });
     }
 
-    let action = req.headers.host + '/lti';
+    let action = req.protocol + '://' + req.headers.host + '/lti';
     let secret = config.consumer_keys[req.body.oauth_consumer_key];
 
     let consumer_signature = req.body.oauth_signature;
