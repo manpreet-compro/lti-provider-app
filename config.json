@@ -1,7 +1,7 @@
 {
     "port":3000,
-    "TPUrl": "http://salty-hamlet-43178.herokuapp.com/lti",
     "consumer_keys": {
         "consumer": "secret"
-    }
+    },
+    "timestampWindow": "600"
 }

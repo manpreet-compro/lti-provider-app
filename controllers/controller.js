@@ -8,7 +8,14 @@ exports.homeController = (req, res)=>{
 }
 
 exports.verifyLtiLaunch = (req,res)=>{
-    if (req.body.lti_message_type != "basic-lti-launch-request" || req.body.oauth_signature_method != "HMAC-SHA1" || req.body.lti_version != "LTI-1p0" || req.body.oauth_version != "1.0") {
+    if (req.body.lti_message_type != "basic-lti-launch-request" || req.body.oauth_signature_method != "HMAC-SHA1" || req.body.lti_version != "LTI-1p0" || req.body.oauth_version != "1.0" || !req.body.oauth_nonce) {
+        res.render('error.hbs', {
+            badRequest: true
+        });
+    }
+
+    //Check if timestamp is not older than specified
+    if (parseInt(req.body.oauth_timestamp) > Math.round(Date.now() / 1000) && parseInt(req.body.oauth_timestamp) < (Math.round(Date.now() / 1000) - config.timestampWindow)) {
         res.render('error.hbs', {
             badRequest: true
         });
@@ -20,7 +27,7 @@ exports.verifyLtiLaunch = (req,res)=>{
         });
     }
 
-    let action = config.TPUrl;
+    let action = req.headers.host + '/lti';
     let secret = config.consumer_keys[req.body.oauth_consumer_key];
 
     let consumer_signature = req.body.oauth_signature;
